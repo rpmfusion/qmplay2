@@ -2,7 +2,7 @@
 
 Name:           qmplay2
 Version:        16.08.19
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -38,7 +38,7 @@ ffmpeg and libmodplug (including J2B). It has an integrated Youtube browser.
 
 %package        kde-integration
 Summary:        %{pname} KDE integration subpackage
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       kde-workspace-common
 BuildArch:      noarch
 
@@ -125,6 +125,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Sat Sep 03 2016 Martin Gansser <martinkg@fedoraproject.org> - 16.08.19-4
+- removed %%_isa requirement from kde-integration subpackage
+
 * Tue Aug 23 2016 Martin Gansser <martinkg@fedoraproject.org> - 16.08.19-3
 - Take ownership of directory %%{_datadir}/solid and %%{_datadir}/solid/actions
 - Removed call to gzip manpage file and added 
