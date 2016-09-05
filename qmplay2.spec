@@ -1,8 +1,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        16.08.19
-Release:        4%{?dist}
+Version:        16.09.04
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -125,6 +125,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Mon Sep 05 2016 Martin Gansser <martinkg@fedoraproject.org> - 16.09.04-1
+- Update to 16.09.04
+
 * Sat Sep 03 2016 Martin Gansser <martinkg@fedoraproject.org> - 16.08.19-4
 - removed %%_isa requirement from kde-integration subpackage
 
