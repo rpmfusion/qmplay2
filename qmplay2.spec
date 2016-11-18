@@ -2,7 +2,7 @@
 
 Name:           qmplay2
 Version:        16.11.01
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -125,6 +125,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Fri Nov 18 2016 Adrian Reber <adrian@lisas.de> - 16.11.01-2
+- Rebuilt for libcdio-0.94
+
 * Wed Nov 02 2016 Martin Gansser <martinkg@fedoraproject.org> - 16.11.01-1
 - Update to 16.11.01
 
