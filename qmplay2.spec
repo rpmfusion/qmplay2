@@ -1,17 +1,21 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        17.02.12
+Version:        17.03.17
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/releases/download/%{version}/%{pname}-src-%{version}.tar.xz
+# https://github.com/zaps166/QMPlay2/issues/92
+Patch0:         fix_QMPlay2-appdata-xml.patch
 
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
 BuildRequires:  qt5-linguist
 BuildRequires:  portaudio-devel
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libass)
 BuildRequires:  pkgconfig(libavcodec)
@@ -53,7 +57,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 It's a development package for %{name}.
 
 %prep
-%autosetup -n %{pname}-src-%{version}
+%autosetup -p1 -n %{pname}-src-%{version}
 
 # E: invalid-desktopfile /usr/share/applications/QMPlay2.desktop file
 # contains group "PlayPause Shortcut Group", but groups extending the
@@ -81,8 +85,13 @@ s:.*/\([a-zA-Z]\{2\}\).qm:%lang(\1) \0:' > %{name}.lang
 cd %{buildroot}/%{_datadir}/qmplay2
 rm LICENSE README.md TODO AUTHORS ChangeLog
 
+mkdir -p %{buildroot}%{_datadir}/appdata
+mv %{buildroot}/%{_datadir}/metainfo/org.zaps166.QMPlay2.appdata.xml \
+   %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
+
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.xml
 
 %post
 /sbin/ldconfig
@@ -113,6 +122,7 @@ fi
 %dir %{_datadir}/solid
 %dir %{_datadir}/solid/actions
 %{_datadir}/applications/%{pname}*.desktop
+%{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/%{pname}.png
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/lang
@@ -125,6 +135,11 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Sat Mar 18 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.03.17-1
+- Update to 17.03.17
+- Add appdata.xml file
+- Add BR libappstream-glib
+
 * Mon Feb 13 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.02.12-1
 - Update to 17.02.12
 
