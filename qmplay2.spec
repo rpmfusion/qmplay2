@@ -1,14 +1,14 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        17.03.17
-Release:        2%{?dist}
+Version:        17.04.02
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/releases/download/%{version}/%{pname}-src-%{version}.tar.xz
 # https://github.com/zaps166/QMPlay2/issues/92
-Patch0:         fix_QMPlay2-appdata-xml.patch
+#Patch0:         fix_QMPlay2-appdata-xml.patch
 
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
@@ -86,7 +86,7 @@ cd %{buildroot}/%{_datadir}/qmplay2
 rm LICENSE README.md TODO AUTHORS ChangeLog
 
 mkdir -p %{buildroot}%{_datadir}/appdata
-mv %{buildroot}/%{_datadir}/metainfo/org.zaps166.QMPlay2.appdata.xml \
+mv %{buildroot}/%{_datadir}/metainfo/QMPlay2.appdata.xml \
    %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
 
 %check
@@ -123,7 +123,7 @@ fi
 %dir %{_datadir}/solid/actions
 %{_datadir}/applications/%{pname}*.desktop
 %{_datadir}/appdata/%{name}.appdata.xml
-%{_datadir}/icons/hicolor/*/apps/%{pname}.png
+%{_datadir}/icons/hicolor/*/apps/%{pname}.*
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/lang
 %{_mandir}/man1/%{pname}.1*
@@ -135,8 +135,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
-* Mon Mar 20 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 17.03.17-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+* Mon Apr 03 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.04.02-1
+- Update to 17.04.02
+- Dropped appdata.xml file
 
 * Sat Mar 18 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.03.17-1
 - Update to 17.03.17
