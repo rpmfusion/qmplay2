@@ -1,7 +1,7 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        17.04.02
+Version:        17.04.21
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
@@ -135,6 +135,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Sat Apr 22 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.04.21-1
+- Update to 17.04.21
+
 * Mon Apr 03 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.04.02-1
 - Update to 17.04.02
 - Dropped appdata.xml file
