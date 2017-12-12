@@ -1,7 +1,7 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        17.10.24
+Version:        17.12.11
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
@@ -133,6 +133,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Tue Dec 12 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.12.11-1
+- Update to 17.12.11
+
 * Wed Oct 25 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.10.24-1
 - Update to 17.10.24
 
