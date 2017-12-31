@@ -10,6 +10,7 @@ Source:         https://github.com/zaps166/QMPlay2/releases/download/%{version}/
 
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
+BuildRequires:  pkgconfig(Qt5X11Extras)
 BuildRequires:  qt5-linguist
 BuildRequires:  portaudio-devel
 BuildRequires:  desktop-file-utils
@@ -135,6 +136,7 @@ fi
 %changelog
 * Sun Dec 31 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.12.31-1
 - Update to 17.12.31
+- Added BR pkgconfig(Qt5X11Extras)
 
 * Tue Dec 12 2017 Martin Gansser <martinkg@fedoraproject.org> - 17.12.11-1
 - Update to 17.12.11
