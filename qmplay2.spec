@@ -1,3 +1,4 @@
+%undefine _strict_symbol_defs_build
 %global pname QMPlay2
 
 Name:           qmplay2
