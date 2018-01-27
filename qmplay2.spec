@@ -2,7 +2,7 @@
 
 Name:           qmplay2
 Version:        17.12.31
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 Url:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -134,6 +134,9 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Sat Jan 27 2018 Leigh Scott <leigh123linux@googlemail.com> - 17.12.31-4
+- Rebuild for new libcdio
+
 * Thu Jan 18 2018 Leigh Scott <leigh123linux@googlemail.com> - 17.12.31-3
 - Rebuilt for ffmpeg-3.5 git
 
