@@ -3,12 +3,14 @@
 
 Name:           qmplay2
 Version:        17.12.31
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
-Url:            http://zaps166.sourceforge.net/?app=QMPlay2
+URL:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/releases/download/%{version}/%{pname}-src-%{version}.tar.xz
 
+BuildRequires:  cmake3
+BuildRequires:  ninja-build
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
 BuildRequires:  pkgconfig(Qt5X11Extras)
@@ -42,7 +44,7 @@ ffmpeg and libmodplug (including J2B). It has an integrated Youtube browser.
 
 %package        kde-integration
 Summary:        %{pname} KDE integration subpackage
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       kde-workspace-common
 BuildArch:      noarch
 
@@ -71,12 +73,13 @@ mkdir -p %{_target_platform}
 pushd %{_target_platform}
     %cmake \
     -DCMAKE_BUILD_TYPE='Debug' \
+    -GNinja \
     ..
 popd
-%make_build -C %{_target_platform}
+%ninja_build -C %{_target_platform}
 
 %install
-%make_install -C %{_target_platform}
+%ninja_install -C %{_target_platform}
 
 find %{buildroot}%{_datadir}/%{name} -name "*.qm" | sed 's:'%{buildroot}'::
 s:.*/\([a-zA-Z]\{2\}\).qm:%lang(\1) \0:' > %{name}.lang
@@ -93,24 +96,7 @@ mv %{buildroot}/%{_datadir}/metainfo/QMPlay2.appdata.xml \
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.xml
 
-%post
-/sbin/ldconfig
-/usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%postun
-/sbin/ldconfig
-if [ $1 -eq 0 ] ; then
-  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
-  touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-  /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%posttrans
-/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+%ldconfig_scriptlets
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog README.md TODO
@@ -135,6 +121,12 @@ fi
 %{_includedir}/%{pname}
 
 %changelog
+* Tue Feb 20 2018 Leigh Scott <leigh123linux@googlemail.com> - 17.12.31-5
+- Rebuild for new ffmpeg snapshot
+- Add build reqiures cmake3 and ninja-build
+- Fix scriplets
+- Add missing isa
+
 * Sat Jan 27 2018 Leigh Scott <leigh123linux@googlemail.com> - 17.12.31-4
 - Rebuild for new libcdio
 
