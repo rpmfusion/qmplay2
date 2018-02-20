@@ -44,7 +44,7 @@ ffmpeg and libmodplug (including J2B). It has an integrated Youtube browser.
 
 %package        kde-integration
 Summary:        %{pname} KDE integration subpackage
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       kde-workspace-common
 BuildArch:      noarch
 
@@ -125,7 +125,6 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 - Rebuild for new ffmpeg snapshot
 - Add build reqiures cmake3 and ninja-build
 - Fix scriplets
-- Add missing isa
 
 * Sat Jan 27 2018 Leigh Scott <leigh123linux@googlemail.com> - 17.12.31-4
 - Rebuild for new libcdio
