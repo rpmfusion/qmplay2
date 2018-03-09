@@ -2,8 +2,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        17.12.31
-Release:        7%{?dist}
+Version:        18.03.02
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -121,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 %{_includedir}/%{pname}
 
 %changelog
+* Fri Mar 09 2018 Martin Gansser <martinkg@fedoraproject.org> - 18.03.02-1
+- Update to 18.03.02
+
 * Thu Mar 08 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 17.12.31-7
 - Rebuilt for new ffmpeg snapshot
 
