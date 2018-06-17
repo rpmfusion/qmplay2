@@ -2,8 +2,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        18.03.02
-Release:        2%{?dist}
+Version:        18.04.01
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -121,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 %{_includedir}/%{pname}
 
 %changelog
+* Sun Jun 17 2018 Martin Gansser <martinkg@fedoraproject.org> - 18.04.01-1
+- Update to 18.04.01
+
 * Sun Jun 17 2018 Leigh Scott <leigh123linux@googlemail.com> - 18.03.02-2
 - Rebuild for new libass version
 
