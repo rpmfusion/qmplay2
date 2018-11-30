@@ -2,12 +2,12 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        18.07.03
-Release:        2%{?dist}
+Version:        18.11.20
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
-Source:         https://github.com/zaps166/QMPlay2/releases/download/%{version}/%{pname}-src-%{version}.tar.xz
+Source:         https://github.com/zaps166/QMPlay2/archive/%{version}.tar.gz#/%{pname}-%{version}.tar.gz
 
 BuildRequires:  cmake3
 BuildRequires:  ninja-build
@@ -59,7 +59,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 It's a development package for %{name}.
 
 %prep
-%autosetup -p1 -n %{pname}-src-%{version}
+%autosetup -p1 -n %{pname}-%{version}
 
 # E: invalid-desktopfile /usr/share/applications/QMPlay2.desktop file
 # contains group "PlayPause Shortcut Group", but groups extending the
@@ -81,8 +81,7 @@ popd
 %install
 %ninja_install -C %{_target_platform}
 
-find %{buildroot}%{_datadir}/%{name} -name "*.qm" | sed 's:'%{buildroot}'::
-s:.*/\([a-zA-Z]\{2\}\).qm:%lang(\1) \0:' > %{name}.lang
+%find_lang %{name} --all-name --with-qt
 
 # Let's use %%doc macro. AUTHORS & ChangeLog are required for help window
 cd %{buildroot}/%{_datadir}/qmplay2
@@ -90,11 +89,11 @@ rm LICENSE README.md TODO AUTHORS ChangeLog
 
 mkdir -p %{buildroot}%{_datadir}/appdata
 mv %{buildroot}/%{_datadir}/metainfo/QMPlay2.appdata.xml \
-   %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
+   %{buildroot}/%{_metainfodir}/%{name}.appdata.xml
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 %ldconfig_scriptlets
 
@@ -108,7 +107,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 %dir %{_datadir}/solid
 %dir %{_datadir}/solid/actions
 %{_datadir}/applications/%{pname}*.desktop
-%{_datadir}/appdata/%{name}.appdata.xml
+%{_metainfodir}/%{name}.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/%{pname}.*
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/lang
@@ -121,6 +120,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_datadir}/appdata/*.appdata.
 %{_includedir}/%{pname}
 
 %changelog
+* Fri Nov 30 2018 Martin Gansser <martinkg@fedoraproject.org> - 18.11.20-1
+- Update to 18.11.20
+
 * Sun Aug 19 2018 Leigh Scott <leigh123linux@googlemail.com> - 18.07.03-2
 - Rebuilt for Fedora 29 Mass Rebuild binutils issue
 
