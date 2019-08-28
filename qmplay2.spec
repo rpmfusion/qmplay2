@@ -2,8 +2,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        18.12.26
-Release:        3%{?dist}
+Version:        19.08.27
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -14,6 +14,7 @@ BuildRequires:  ninja-build
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
 BuildRequires:  pkgconfig(Qt5X11Extras)
+BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  qt5-linguist
 BuildRequires:  portaudio-devel
 BuildRequires:  desktop-file-utils
@@ -68,7 +69,7 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 
 %build
 # Create translation files.
-lrelease-qt5 QMPlay2.pro
+#lrelease-qt5 QMPlay2.pro
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
     %cmake \
@@ -120,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Wed Aug 28 2019 Martin Gansser <martinkg@fedoraproject.org> - 19.08.27-1
+- Update to 19.08.27
+
 * Wed Aug 07 2019 Leigh Scott <leigh123linux@gmail.com> - 18.12.26-3
 - Rebuild for new ffmpeg version
 
