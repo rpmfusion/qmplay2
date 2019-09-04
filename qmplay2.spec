@@ -2,7 +2,7 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        19.08.27
+Version:        19.09.03
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
@@ -86,7 +86,7 @@ popd
 
 # Let's use %%doc macro. AUTHORS & ChangeLog are required for help window
 cd %{buildroot}/%{_datadir}/qmplay2
-rm LICENSE README.md TODO AUTHORS ChangeLog
+rm LICENSE README.md AUTHORS ChangeLog
 
 mkdir -p %{buildroot}%{_datadir}/appdata
 mv %{buildroot}/%{_datadir}/metainfo/QMPlay2.appdata.xml \
@@ -99,7 +99,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %ldconfig_scriptlets
 
 %files -f %{name}.lang
-%doc AUTHORS ChangeLog README.md TODO
+%doc AUTHORS ChangeLog README.md
 %license LICENSE
 %{_bindir}/%{pname}
 %{_libdir}/%{name}
@@ -121,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Wed Sep 04 2019 Martin Gansser <martinkg@fedoraproject.org> - 19.09.03-1
+- Update to 19.09.03
+
 * Wed Aug 28 2019 Martin Gansser <martinkg@fedoraproject.org> - 19.08.27-1
 - Update to 19.08.27
 
