@@ -3,7 +3,7 @@
 
 Name:           qmplay2
 Version:        19.12.19
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -121,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Fri Apr 10 2020 Leigh Scott <leigh123linux@gmail.com> - 19.12.19-4
+- Rebuild for new libcdio version
+
 * Sat Feb 22 2020 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 19.12.19-3
 - Rebuild for ffmpeg-4.3 git
 
