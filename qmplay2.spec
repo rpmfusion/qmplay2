@@ -2,8 +2,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        19.12.19
-Release:        4%{?dist}
+Version:        20.05.02
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -121,6 +121,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Sun May 03 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.05.02-1
+- Update to 20.05.02
+
 * Fri Apr 10 2020 Leigh Scott <leigh123linux@gmail.com> - 19.12.19-4
 - Rebuild for new libcdio version
 
