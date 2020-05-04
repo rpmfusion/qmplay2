@@ -15,6 +15,7 @@ BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
 BuildRequires:  pkgconfig(Qt5X11Extras)
 BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:  qt5-linguist
 BuildRequires:  portaudio-devel
 BuildRequires:  desktop-file-utils
@@ -123,6 +124,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %changelog
 * Sun May 03 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.05.02-1
 - Update to 20.05.02
+- Add BR pkgconfig(Qt5Svg)
 
 * Fri Apr 10 2020 Leigh Scott <leigh123linux@gmail.com> - 19.12.19-4
 - Rebuild for new libcdio version
