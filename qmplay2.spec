@@ -2,7 +2,7 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        20.05.02
+Version:        20.07.04
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
@@ -122,6 +122,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Tue Jul 07 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.07.04-1
+- Update to 20.07.04
+
 * Sun May 03 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.05.02-1
 - Update to 20.05.02
 - Add BR pkgconfig(Qt5Svg)
