@@ -1,4 +1,5 @@
 %undefine _strict_symbol_defs_build
+%undefine __cmake_in_source_build
 %global pname QMPlay2
 
 Name:           qmplay2
@@ -71,17 +72,14 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 %build
 # Create translation files.
 #lrelease-qt5 QMPlay2.pro
-mkdir -p %{_target_platform}
-pushd %{_target_platform}
-    %cmake \
+%cmake \
     -DCMAKE_BUILD_TYPE='Debug' \
-    -GNinja \
-    ..
-popd
-%ninja_build -C %{_target_platform}
+    -GNinja
+
+%cmake3_build
 
 %install
-%ninja_install -C %{_target_platform}
+%cmake3_install
 
 %find_lang %{name} --all-name --with-qt
 
