@@ -9,6 +9,7 @@ Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/archive/%{version}.tar.gz#/%{pname}-%{version}.tar.gz
+Patch0:         %{name}-numeric_limit_fix.patch
 
 BuildRequires:  cmake3
 BuildRequires:  ninja-build
@@ -62,7 +63,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 It's a development package for %{name}.
 
 %prep
-%autosetup -p1 -n %{pname}-%{version}
+%autosetup -p0 -n %{pname}-%{version}
 
 # E: invalid-desktopfile /usr/share/applications/QMPlay2.desktop file
 # contains group "PlayPause Shortcut Group", but groups extending the
@@ -122,6 +123,7 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %changelog
 * Wed Dec 16 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.12.16-1
 - Update to 20.12.16
+- Add %%{name}-numeric_limit_fix.patch
 
 * Wed Dec 16 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.12.07-1
 - Update to 20.12.07
