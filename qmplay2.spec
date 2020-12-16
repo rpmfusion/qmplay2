@@ -3,8 +3,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        20.07.04
-Release:        2%{?dist}
+Version:        20.12.07
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -74,7 +74,7 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 #lrelease-qt5 QMPlay2.pro
 %cmake \
     -DCMAKE_BUILD_TYPE='Debug' \
-    -GNinja
+    -GNinja -DUSE_VULKAN=OFF
 
 %cmake3_build
 
@@ -120,6 +120,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Wed Dec 16 2020 Martin Gansser <martinkg@fedoraproject.org> - 20.12.07-1
+- Update to 20.12.07
+
 * Tue Aug 18 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 20.07.04-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
