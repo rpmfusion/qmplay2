@@ -3,8 +3,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        20.12.16
-Release:        3%{?dist}
+Version:        21.03.09
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -36,6 +36,7 @@ BuildRequires:  pkgconfig(libsidplayfp)
 BuildRequires:  pkgconfig(libswresample)
 BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(libva)
+BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(taglib)
 BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(xv)
@@ -75,7 +76,7 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 #lrelease-qt5 QMPlay2.pro
 %cmake \
     -DCMAKE_BUILD_TYPE='Debug' \
-    -GNinja -DUSE_VULKAN=OFF
+    -GNinja -DUSE_VULKAN=OFF -DSOLID_ACTIONS_INSTALL_PATH='/usr/share/solid/actions'
 
 %cmake3_build
 
@@ -121,6 +122,10 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Tue Mar 09 2021 Martin Gansser <martinkg@fedoraproject.org> - 21.03.09-1
+- Update to 21.03.09
+- Add BR pkgconfig(libpipewire-0.3)
+
 * Thu Feb 04 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 20.12.16-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
