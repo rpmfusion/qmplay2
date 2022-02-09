@@ -1,5 +1,4 @@
 %undefine _strict_symbol_defs_build
-%undefine __cmake_in_source_build
 %global pname QMPlay2
 
 Name:           qmplay2
@@ -10,6 +9,7 @@ License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/archive/%{version}.tar.gz#/%{pname}-%{version}.tar.gz
 Patch0:         %{name}-numeric_limit_fix.patch
+Patch1:         ffmpeg-5-compilation.patch
 
 BuildRequires:  cmake3
 BuildRequires:  ninja-build
