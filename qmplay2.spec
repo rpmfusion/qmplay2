@@ -4,7 +4,7 @@
 
 Name:           qmplay2
 Version:        21.12.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -122,6 +122,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}
 
 %changelog
+* Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 21.12.24-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Sat Dec 25 2021 Martin Gansser <martinkg@fedoraproject.org> - 21.12.24-1
 - Update to 21.12.24
 
