@@ -1,0 +1,11 @@
+diff -uNrp src/modules/FFmpeg/OggHelper.cpp src/modules/FFmpeg/OggHelper.cpp
+--- src/modules/FFmpeg/OggHelper.cpp	2022-06-16 14:19:35.000000000 +0100
++++ src/modules/FFmpeg/OggHelper.cpp	2022-08-09 13:23:16.147361079 +0100
+@@ -21,6 +21,7 @@
+ extern "C"
+ {
+     #include <libavformat/avio.h>
++    #include <libavutil/mem.h>
+ }
+ 
+ static int readPacket(void *opaque, uint8_t *buf, int bufSize)

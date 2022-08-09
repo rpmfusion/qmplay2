@@ -9,8 +9,9 @@ License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/archive/%{version}.tar.gz#/%{pname}-%{version}.tar.gz
 Patch0:         %{name}-numeric_limit_fix.patch
+Patch1:         ffmpeg51.patch
 
-BuildRequires:  cmake3
+BuildRequires:  cmake
 BuildRequires:  ninja-build
 BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
@@ -77,10 +78,10 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
     -DCMAKE_BUILD_TYPE='Debug' \
     -GNinja -DUSE_VULKAN=OFF -DSOLID_ACTIONS_INSTALL_PATH='/usr/share/solid/actions'
 
-%cmake3_build
+%cmake_build
 
 %install
-%cmake3_install
+%cmake_install
 
 %find_lang %{name} --all-name --with-qt
 
