@@ -2,18 +2,16 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        22.06.16
-Release:        2%{?dist}
+Version:        22.08.21
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
-Source:         https://github.com/zaps166/QMPlay2/archive/%{version}.tar.gz#/%{pname}-%{version}.tar.gz
+Source:         https://github.com/zaps166/QMPlay2/archive/%{version}/%{pname}-%{version}.tar.gz
 Patch0:         %{name}-numeric_limit_fix.patch
-Patch1:         ffmpeg51.patch
 
 BuildRequires:  cmake
 BuildRequires:  ninja-build
-BuildRequires:  kde-workspace-devel
 BuildRequires:  pkgconfig(Qt5) 
 BuildRequires:  pkgconfig(Qt5X11Extras)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -42,6 +40,8 @@ BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(xv)
 Requires:       youtube-dl
 Requires:       hicolor-icon-theme
+# Owns /usr/share/mime/packages/
+Requires:       shared-mime-info
 
 %description
 %{name} is a video player, it can play and stream all formats supported by
@@ -50,7 +50,8 @@ ffmpeg and libmodplug (including J2B). It has an integrated Youtube browser.
 %package        kde-integration
 Summary:        %{pname} KDE integration subpackage
 Requires:       %{name} = %{version}-%{release}
-Requires:       kde-workspace-common
+#  Owns /usr/share/solid/actions/
+Requires:       kf5-filesystem
 BuildArch:      noarch
 
 %description    kde-integration
@@ -76,7 +77,10 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 #lrelease-qt5 QMPlay2.pro
 %cmake \
     -DCMAKE_BUILD_TYPE='Debug' \
-    -GNinja -DUSE_VULKAN=OFF -DSOLID_ACTIONS_INSTALL_PATH='/usr/share/solid/actions'
+    -GNinja \
+    -DUSE_VULKAN=OFF \
+    -DUSE_UPDATES=OFF \
+    -DSOLID_ACTIONS_INSTALL_PATH='/usr/share/solid/actions'
 
 %cmake_build
 
@@ -86,12 +90,12 @@ sed -i '12,33d' src/gui/Unix/QMPlay2.desktop
 %find_lang %{name} --all-name --with-qt
 
 # Let's use %%doc macro. AUTHORS & ChangeLog are required for help window
-cd %{buildroot}/%{_datadir}/qmplay2
+cd %{buildroot}%{_datadir}/qmplay2/
 rm LICENSE README.md AUTHORS ChangeLog
 
-mkdir -p %{buildroot}%{_datadir}/appdata
-mv %{buildroot}/%{_datadir}/metainfo/QMPlay2.appdata.xml \
-   %{buildroot}/%{_metainfodir}/%{name}.appdata.xml
+# Rename appdata file
+mv %{buildroot}%{_metainfodir}/QMPlay2.appdata.xml \
+   %{buildroot}%{_metainfodir}/%{name}.appdata.xml
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
@@ -103,25 +107,28 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %doc AUTHORS ChangeLog README.md
 %license LICENSE
 %{_bindir}/%{pname}
-%{_libdir}/%{name}
+%{_libdir}/%{name}/
 %{_libdir}/libqmplay2.so
 %{_datadir}/mime/packages/x-*.xml
-%dir %{_datadir}/solid
-%dir %{_datadir}/solid/actions
 %{_datadir}/applications/%{pname}*.desktop
 %{_metainfodir}/%{name}.appdata.xml
 %{_datadir}/icons/hicolor/*/apps/%{pname}.*
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/lang
+%dir %{_datadir}/%{name}/
+%dir %{_datadir}/%{name}/lang/
 %{_mandir}/man1/%{pname}.1*
 
 %files kde-integration
 %{_datadir}/solid/actions/*.desktop
 
 %files devel
-%{_includedir}/%{pname}
+%{_includedir}/%{pname}/
 
 %changelog
+* Mon Aug 22 2022 Leigh Scott <leigh123linux@gmail.com> - 22.08.21-1
+- Update to 22.08.21
+- Remove unused build requires and requires
+- Clean up spec file
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 22.06.16-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
