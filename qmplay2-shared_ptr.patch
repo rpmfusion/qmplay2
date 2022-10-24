@@ -1,0 +1,20 @@
+--- src/qmplay2/QMPlay2OSD.hpp.orig	2022-10-24 13:30:24.703486826 +0200
++++ src/qmplay2/QMPlay2OSD.hpp	2022-10-24 13:31:17.157936512 +0200
+@@ -27,6 +27,7 @@
+ #include <functional>
+ #include <vector>
+ #include <mutex>
++#include <memory>
+ 
+ #ifdef USE_VULKAN
+ #   include <QVector4D>
+--- src/qmplay2/LibASS.hpp.orig	2022-10-24 13:39:56.169520417 +0200
++++ src/qmplay2/LibASS.hpp	2022-10-24 13:40:21.483208863 +0200
+@@ -24,6 +24,7 @@
+ #include <QList>
+ 
+ #include <set>
++#include <memory>
+ 
+ class Settings;
+ class QMPlay2OSD;
