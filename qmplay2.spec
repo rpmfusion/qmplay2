@@ -2,14 +2,12 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        22.10.23
+Version:        23.02.05
 Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
 Source:         https://github.com/zaps166/QMPlay2/archive/%{version}/%{pname}-%{version}.tar.gz
-Patch0:         %{name}-numeric_limit_fix.patch
-Patch1:         %{name}-shared_ptr.patch
 
 BuildRequires:  cmake
 BuildRequires:  ninja-build
@@ -125,6 +123,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}/
 
 %changelog
+* Sat Feb 25 2023 Martin Gansser <martinkg@fedoraproject.org> - 23.02.05-1
+- Update to 23.02.05
+
 * Mon Oct 24 2022 Martin Gansser <martinkg@fedoraproject.org> - 22.10.23-1
 - Update to 22.10.23
 - Add qmplay2-shared_ptr.patch
