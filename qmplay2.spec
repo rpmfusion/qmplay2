@@ -3,7 +3,7 @@
 
 Name:           qmplay2
 Version:        23.02.05
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -123,6 +123,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}/
 
 %changelog
+* Wed Mar 01 2023 Leigh Scott <leigh123linux@gmail.com> - 23.02.05-2
+- Rebuild for new ffmpeg
+
 * Sat Feb 25 2023 Martin Gansser <martinkg@fedoraproject.org> - 23.02.05-1
 - Update to 23.02.05
 
