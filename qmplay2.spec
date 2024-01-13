@@ -3,7 +3,7 @@
 
 Name:           qmplay2
 Version:        23.10.22
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -37,7 +37,7 @@ BuildRequires:  pkgconfig(libpipewire-0.3)
 BuildRequires:  pkgconfig(taglib)
 BuildRequires:  pkgconfig(vdpau)
 BuildRequires:  pkgconfig(xv)
-Requires:       youtube-dl
+Requires:       yt-dlp
 Requires:       hicolor-icon-theme
 # Owns /usr/share/mime/packages/
 Requires:       shared-mime-info
@@ -123,6 +123,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}/
 
 %changelog
+* Sat Jan 13 2024 Martin Gansser <martinkg@fedoraproject.org> - 23.10.22-2
+- Replace RR youtube-dl by yt-dlp
+
 * Mon Oct 23 2023 Martin Gansser <martinkg@fedoraproject.org> - 23.10.22-1
 - Update to 23.10.22
 
