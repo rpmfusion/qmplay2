@@ -3,7 +3,7 @@
 
 Name:           qmplay2
 Version:        23.10.22
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -123,6 +123,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}/
 
 %changelog
+* Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 23.10.22-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
 * Sat Jan 13 2024 Martin Gansser <martinkg@fedoraproject.org> - 23.10.22-2
 - Replace RR youtube-dl by yt-dlp
 
