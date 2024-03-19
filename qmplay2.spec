@@ -2,8 +2,8 @@
 %global pname QMPlay2
 
 Name:           qmplay2
-Version:        23.10.22
-Release:        3%{?dist}
+Version:        24.03.16
+Release:        1%{?dist}
 Summary:        A Qt based media player, streamer and downloader
 License:        LGPLv3+
 URL:            http://zaps166.sourceforge.net/?app=QMPlay2
@@ -11,11 +11,12 @@ Source:         https://github.com/zaps166/QMPlay2/archive/refs/tags/%{version}.
 
 BuildRequires:  cmake
 BuildRequires:  ninja-build
-BuildRequires:  pkgconfig(Qt5) 
-BuildRequires:  pkgconfig(Qt5X11Extras)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Svg)
-BuildRequires:  qt5-linguist
+BuildRequires:  pkgconfig(Qt6Core)
+BuildRequires:  pkgconfig(Qt6Core5Compat)
+BuildRequires:  pkgconfig(Qt6Qml)
+BuildRequires:  pkgconfig(Qt6Svg)
+BuildRequires:  pkgconfig(Qt6UiTools)
+BuildRequires:  qt6-linguist
 BuildRequires:  portaudio-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
@@ -123,6 +124,10 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 %{_includedir}/%{pname}/
 
 %changelog
+* Tue Mar 19 2024 Martin Gansser <martinkg@fedoraproject.org> - 24.03.16-1
+- Update to 24.03.16
+- Rebuilt for qt6
+
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 23.10.22-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
